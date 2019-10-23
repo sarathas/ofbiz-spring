@@ -31,7 +31,6 @@ buildscript {
 
 ext {
     springBootVersion = '2.2.0.RELEASE'
-    samlVersion = '2.0.0.M30'
     springVersion = '5.2.0.RELEASE'
 }
 dependencies {

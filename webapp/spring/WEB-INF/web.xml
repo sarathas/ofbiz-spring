@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<web-app version="3.0">
+    <display-name>Apache OFBiz - Spring Component</display-name>
+    <description>Spring Component of the Apache OFBiz Project</description>
+
+    <!-- context-param>
+        <param-name>webSiteId</param-name>
+        <param-value>springSite</param-value>
+        <description>A unique ID used to look up the WebSite entity. Only for component using a WebSite entity, like ecommerce</description>
+    </context-param-->
+    <context-param>
+        <description>A unique name used to identify/recognize the local dispatcher for the Service Engine</description>
+        <param-name>localDispatcherName</param-name><param-value>spring</param-value>
+    </context-param>
+    <context-param>
+        <description>The Name of the Entity Delegator to use, defined in entityengine.xml</description>
+        <param-name>entityDelegatorName</param-name><param-value>default</param-value>
+    </context-param>
+    <context-param>
+        <description>The location of the main-decorator screen to use for this webapp; referred to as a context variable in screen def XML files.</description>
+        <param-name>mainDecoratorLocation</param-name>
+        <param-value>component://spring/widget/CommonScreens.xml</param-value>
+    </context-param>
+    <context-param>
+        <description>Remove unnecessary whitespace from HTML output.</description>
+        <param-name>compressHTML</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <servlet>
+        <description>DispatcherServlet</description>
+        <display-name>DispatcherServlet</display-name>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/dispatcher-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>60</session-timeout><!-- in minutes -->
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+</web-app>
